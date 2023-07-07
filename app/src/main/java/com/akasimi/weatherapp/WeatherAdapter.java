@@ -39,24 +39,25 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         WeatherModel model = weatherModelArrayList.get(position);
         holder.temperature.setText(model.getTemperature() + "℃");
         holder.wind.setText(model.getWindSpeed() + "km/h");
-        String formattedTime = formatTimeString(model.getTime());
-        holder.time.setText(formattedTime);
+        String timeString = model.getTime();
+        String formattedDate = formatTime(timeString);
+        holder.time.setText(formattedDate);
         Picasso.get().load("http://".concat(model.getIcon())).into(holder.condition);
     }
 
-    private String formatTimeString(String timeString) {
+    private String formatTime(String timeString) {
         try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
 
             Date time = inputFormat.parse(timeString);
             return outputFormat.format(time);
         } catch (ParseException e) {
-            // Handle parsing errors
             System.err.println("Error parsing time: " + timeString);
             return null;
         }
     }
+
 
     @Override
     public int getItemCount() {

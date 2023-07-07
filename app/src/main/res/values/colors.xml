@@ -10,4 +10,7 @@
     <color name="colorBlackLight">#323232</color>
     <color name="colorBlackLighter">#424242</color>
     <color name="colorBlackLightest">#535353</color>
+    <color name="babyBlue">#2E494C</color>
+
+
 </resources>
